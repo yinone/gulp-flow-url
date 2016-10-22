@@ -24,10 +24,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:yinone/gulp-flow.git"
+    "url": "git+ssh://git@github.com:yinone/gulp-flow-url.git"
   },
   "bugs": {
-    "url": "https://github.com/yinone/gulp-flow/issues",
+    "url": "https://github.com/yinone/gulp-flow-url/issues",
     "email": "eleven.image@gmail.com"
   }
 }
