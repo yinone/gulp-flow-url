@@ -7,7 +7,7 @@ const url = require('url');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const PLUGIN_NAME = 'gulp-flow';
+const PLUGIN_NAME = 'gulp-flow-url';
 
 function md5(str) {
     return crypto.createHash('md5').update(str).digest('hex');

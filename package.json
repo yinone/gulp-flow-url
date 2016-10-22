@@ -1,10 +1,10 @@
 {
-  "name": "gulp-flow",
+  "name": "gulp-flow-url",
   "version": "1.0.0",
-  "description": "The gulp flow for Torlax",
+  "description": "The gulp flow url for Torlax",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [
     "stream",
@@ -17,9 +17,17 @@
     "gulp-util": "^3.0.7",
     "through2": "^2.0.1"
   },
+  "devDependencies": {
+    "event-stream": "^3.3.4",
+    "mocha": "^3.1.2",
+    "should": "^11.1.1"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/npm/npm.git"
+    "url": "git+ssh://git@github.com:yinone/gulp-flow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yinone/gulp-flow/issues",
+    "email": "eleven.image@gmail.com"
   }
-
 }

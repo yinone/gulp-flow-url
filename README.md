@@ -1,2 +1,2 @@
-# gulp-flow
-The gulp flow for Torlax
+# gulp-flow-url
+The gulp url flow for Torlax
