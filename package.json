@@ -9,7 +9,8 @@
   "keywords": [
     "stream",
     "gulp",
-    "transform"
+    "transform",
+    "gulp-replace-url"
   ],
   "author": "Eleven",
   "license": "ISC",

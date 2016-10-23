@@ -20,10 +20,6 @@ function gulpReplaceUrl(options) {
     let ver = opts.version || '';
     let cdn = opts.cdn || '';
 
-    console.log('env', env);
-    console.log('cdn', cdn);
-    console.log('ver', ver);
-
     return through.obj(function(file, enc, cb) {
 
         if (file.isNull()) {
@@ -49,73 +45,15 @@ function gulpReplaceUrl(options) {
                     console.log(content);
                 }
                 if(content)
-                if(content.indexOf('hm.baidu.com/hm.js') !== -1) {
+                if(content.indexOf('hm.baidu.com/hm.js') > -1) {
                     return content;
                 }
-                if(content.indexOf('common/') !== -1) {
+                if(content.indexOf('common/') > -1) {
                     content = content.substr(content.indexOf('common/'));
                     return content = cdn + content;
                 }
                 return content = prefixer + '/' + content
             }));
-        //     console.log(modname);
-        //     console.log(mainPath);
-        //     // file.contents.replace('page.')
-            // file.contents = Buffer.concat([cur, prefixText]);
-        // }
-        // if (file.isBuffer()) {
-        //     console.log(file.isBuffer());
-        //     console.log(file.base);
-        //     console.log(file.path);
-        //     console.log(file.dirname);
-        //     console.log(file.basename);
-        //     console.log(file.relative);
-        //     console.log(process.cwd());
-        //     let modname = path.resolve(process.cwd());
-        //     let mainPath = path.dirname(file.path);
-        //     console.log(mainPath.replace(modname, ''));
-        //     let curPath = mainPath.replace(modname, '');
-        //     let reg = /(\w+\/)+\w+\.png|jpeg|jpg|gif|svg|ttf/gim;
-        //     let contents = file.contents.toString().replace(reg, function(content) {
-        //         console.log(1);
-        //         console.log(content);
-               
-        //         content = '1.2'+ curPath + content;
-        //         return content;
-        //     });
-        //     console.log(modname);
-        //     console.log(mainPath);
-        //     let cur = new Buffer(contents);
-        //     file.contents = Buffer.concat([cur, prefixText]);
-        // }
-        // if (file.isBuffer()) {
-
-        //     // console.log(file.isBuffer());
-        //     // console.log(file.base);
-
-        //     // console.log(process.cwd());
-
-        //     let reg = /(|'|")([\w\.\-]+\/)+[\w\.\-]+\.(js|css|png|jpeg|jpg|gif|svg|ttf)("|'|)/gim;
-            
-        //     let fileHashFile = md5(file.contents.toString()).slice(0, 8) + path.extname(file.path);
-
-        //     let fileName = path.basename(file.path, path.extname(file.path));
-
-            // console.log(fileName);
-            // console.log(fileHashFile);
-
-            // var reg = /(\w\/)+\w+.png|jpeg|jpg|gif|js|css/
-            // let contents = file.contents.toString().replace(reg, function(content) {
-            //     console.log(1);
-            //     console.log(content);
-               
-            //     content = '1.2'+ curPath + content;
-            //     return content;
-            // });
-            // console.log(modname);
-            // console.log(mainPath);
-            // let cur = new Buffer(contents);
-            // file.contents = Buffer.concat([cur, prefixText]);
         }
 
         cb(null, file);
