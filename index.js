@@ -38,6 +38,7 @@ function gulpReplaceUrl(options) {
 
             console.log(prefixer);
 
+            // match all link
             let reg = /([\w\.\-\/]+\/)*[\w\.\-\/]+\.(js|css|png|jpeg|jpg|gif|svg|ttf)/gim;
             file.contents = new Buffer(file.contents.toString().replace(reg, (content) => {
                 if(content[0] === '\.' || content[0] === '\/') {
