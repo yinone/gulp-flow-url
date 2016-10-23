@@ -54,7 +54,6 @@ function gulpReplaceUrl(options) {
                 }
                 return content = prefixer + '/' + content
             }));
-        }
 
         cb(null, file);
 
