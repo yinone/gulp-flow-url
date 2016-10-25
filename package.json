@@ -12,6 +12,27 @@
     "transform",
     "gulp-replace-url"
   ],
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "comments": false
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "plugins": [
+      "html"
+    ]
+  },
   "author": "Eleven",
   "license": "ISC",
   "dependencies": {

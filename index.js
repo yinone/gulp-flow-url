@@ -3,22 +3,15 @@
 const through = require('through2');
 const gutil = require('gulp-util');
 const PluginError = gutil.PluginError;
-const url = require('url');
-const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const PLUGIN_NAME = 'gulp-flow-url';
-
-function md5(str) {
-    return crypto.createHash('md5').update(str).digest('hex');
-}
 
 function gulpReplaceUrl(options) {
 
     let opts = options || {};
-    let env = opts.env || 'development';
     let ver = opts.version || '';
     let cdn = opts.cdn || '';
+    let exclude = opts.exclude || [];
 
     return through.obj(function(file, enc, cb) {
 
@@ -34,23 +27,25 @@ function gulpReplaceUrl(options) {
             let modname = path.resolve(process.cwd());
             let mainPath = path.dirname(file.path);
             let basePath = mainPath.replace(modname, '');
+            
             let prefixer = cdn + ver + basePath;
 
             let reg = /([\w\.\-\/]+\/)*[\w\.\-\/]+\.(js|css|png|jpeg|jpg|gif|svg|ttf)/gim;
+
             file.contents = new Buffer(file.contents.toString().replace(reg, (content) => {
                 if(content[0] === '\.' || content[0] === '\/') {
                     content = content.substr(content.indexOf('\/') + 1);
-                    console.log(content);
                 }
-                if(content)
-                if(content.indexOf('hm.baidu.com/hm.js') > -1) {
-                    return content;
-                }
+
                 if(content.indexOf('common/') > -1) {
                     content = content.substr(content.indexOf('common/'));
                     return content = cdn + content;
                 }
+
+                exclude.forEach( (v) => content.indexOf(v) > -1 && content );
+
                 return content = prefixer + '/' + content
+
             }));
 
         }
