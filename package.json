@@ -41,7 +41,8 @@
   },
   "devDependencies": {
     "event-stream": "^3.3.4",
-    "mocha": "^3.1.2"
+    "mocha": "^3.1.2",
+    "vinyl": "^2.0.0"
   },
   "repository": {
     "type": "git",

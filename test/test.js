@@ -3,13 +3,12 @@
 * @E-mail: eleven.image@gmail.com
 * @Date:   2016-10-25 20:35:46
 * @Last Modified by:   eleven
-* @Last Modified time: 2016-10-25 21:59:12
+* @Last Modified time: 2016-10-26 13:46:40
 */
 
 'use strict';
 
 let assert = require('assert');
-let es = require('event-stream');
 let File = require('vinyl');
 let flowUrl = require('../');
 
