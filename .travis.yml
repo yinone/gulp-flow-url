@@ -1,9 +1,11 @@
 language: node_js
 node_js:
   - "4"
-install:
+cache:
+  directories:
+  - node_modules
+before install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
-before_script:
   - yarn install
 script: 
   - mocha
