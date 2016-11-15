@@ -34,7 +34,6 @@ function gulpReplaceUrl(options) {
 
             file.contents = new Buffer(file.contents.toString().replace(reg, (content) => {
                 if(content.indexOf('hm.baidu.com/hm.js') > -1) {
-                    console.log(exclude);
                     return content;
                 }
                 if(content[0] === '\.' || content[0] === '\/') {
