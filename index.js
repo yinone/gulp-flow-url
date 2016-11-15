@@ -29,7 +29,6 @@ function gulpReplaceUrl(options) {
             let basePath = mainPath.replace(modname, '');
 
             let prefixer = cdn + ver + basePath;
-
             let reg = /([\w\.\-\/]+\/)*[\w\.\-\/]+\.(js|css|png|jpeg|jpg|gif|svg|ttf)/gim;
 
             file.contents = new Buffer(file.contents.toString().replace(reg, (content) => {
@@ -47,7 +46,6 @@ function gulpReplaceUrl(options) {
             }));
 
         }
-        
         cb(null, file);
     });
 
