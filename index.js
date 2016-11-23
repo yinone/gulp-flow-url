@@ -11,7 +11,7 @@ function gulpReplaceUrl(options) {
     let opts = options || {};
     let ver = opts.version || '';
     let cdn = opts.cdn || '';
-    let exclude = opts.exclude || '';
+    let prefix = opts.prefix || '';
 
     return through.obj(function(file, enc, cb) {
 
@@ -28,7 +28,11 @@ function gulpReplaceUrl(options) {
             let mainPath = path.dirname(file.path);
             let basePath = mainPath.replace(modname, '');
 
-            let prefixer = cdn + ver + basePath;
+            if(!/\/$/.test(prefix)) {
+                prefix = prefix + '/'
+            }
+
+            let prefixer = cdn + prefix + ver + basePath;
             let reg = /([\w\.\-\/]+\/)*[\w\.\-\/]+\.(js|css|png|jpeg|jpg|gif|svg|ttf)/gim;
 
             file.contents = new Buffer(file.contents.toString().replace(reg, (content) => {
@@ -40,8 +44,9 @@ function gulpReplaceUrl(options) {
                 }
                 if(content.indexOf('common') > -1) {
                     content = content.substr(content.indexOf('common'));
-                    return content = cdn + content;
+                    return content = cdn + prefix + content;
                 }
+
                 return content = prefixer + '/' + content;
             }));
 
