@@ -6,13 +6,21 @@ const PluginError = gutil.PluginError;
 const path = require('path');
 const PLUGIN_NAME = 'gulp-flow-url';
 
-function gulpReplaceUrl(options) {
+function gulpReplaceUrl(options = {}) {
+   
+    Object.keys(options).forEach( (key, i, arr) => {
 
-    let opts = options || {};
-    let ver = opts.version || '';
-    let cdn = opts.cdn || '';
-    let prefix = opts.prefix || '';
+        if(options[key] && !/\/$/.test(options[key])){
+            console.log(options[key])
+            console.log(key);
+            options[key] += '/';
+        }
+    });
 
+    let ver = options.version || '';
+    let cdn = options.cdn || '';
+    let prefix = options.prefix || '';
+    
     return through.obj(function(file, enc, cb) {
 
         if (file.isNull()) {
@@ -26,12 +34,8 @@ function gulpReplaceUrl(options) {
 
             let modname = path.resolve(process.cwd());
             let mainPath = path.dirname(file.path);
-            let basePath = mainPath.replace(modname, '');
-
-            if(!/\/$/.test(prefix)) {
-                prefix = prefix + '/'
-            }
-
+            let basePath = mainPath.replace(modname, '').slice(1);
+            
             let prefixer = cdn + prefix + ver + basePath;
             let reg = /([\w\.\-\/]+\/)*[\w\.\-\/]+\.(js|css|png|jpeg|jpg|gif|svg|ttf)/gim;
 
@@ -40,13 +44,12 @@ function gulpReplaceUrl(options) {
                     return content;
                 }
                 if(content[0] === '\.' || content[0] === '\/') {
-                    content = content.substr(content.indexOf('\/') + 1);
+                    content = content.slice(content.indexOf('\/') + 1);
                 }
                 if(content.indexOf('common') > -1) {
-                    content = content.substr(content.indexOf('common'));
+                    content = content.slice(content.indexOf('common'));
                     return content = cdn + prefix + content;
                 }
-
                 return content = prefixer + '/' + content;
             }));
 
