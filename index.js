@@ -6,8 +6,9 @@ const PluginError = gutil.PluginError;
 const path = require('path');
 const PLUGIN_NAME = 'gulp-flow-url';
 
-function gulpReplaceUrl(options = {}) {
-   
+function gulpReplaceUrl(options) {
+    
+    options = options || {};
     Object.keys(options).forEach( (key, i, arr) => {
 
         if(options[key] && !/\/$/.test(options[key])){
