@@ -12,8 +12,6 @@ function gulpReplaceUrl(options) {
     Object.keys(options).forEach( (key, i, arr) => {
 
         if(options[key] && !/\/$/.test(options[key])){
-            console.log(options[key])
-            console.log(key);
             options[key] += '/';
         }
     });
