@@ -39,13 +39,13 @@ function gulpReplaceUrl(options) {
             let reg = /([\w\.\-\/]+\/)*[\w\.\-\/]+\.(js|css|png|jpeg|jpg|gif|svg|ttf)/gim;
 
             file.contents = new Buffer(file.contents.toString().replace(reg, (content) => {
-                if(content.indexOf('hm.baidu.com/hm.js') > -1) {
+                if(content.indexOf('hm.baidu.com/hm.js') > 0) {
                     return content;
                 }
                 if(content[0] === '\.' || content[0] === '\/') {
                     content = content.slice(content.indexOf('\/') + 1);
                 }
-                if(content.indexOf('common') > -1) {
+                if(content.indexOf('common') > 0) {
                     content = content.slice(content.indexOf('common'));
                     return content = cdn + prefix + content;
                 }
